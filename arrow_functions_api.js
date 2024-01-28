@@ -70,3 +70,19 @@ const getUsers = (array)  => {
   }
 };
 console.log(getUsers("usersName"));
+
+
+//adds a new user to the users array and return the user created, all users in new array and the user created
+const addUser = (newUser) => {
+  try {
+    usersName.push(newUser);
+    const userIndex = usersName.indexOf(newUser);
+    const user = usersName.at(userIndex);
+   return sendReponse(201, "New User: " + user + " New array: " + usersName );
+  
+  }catch(error){
+    return sendReponse(500, error);
+  }
+
+};
+console.log(addUser("Corpus "));
