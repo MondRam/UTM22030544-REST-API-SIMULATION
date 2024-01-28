@@ -117,3 +117,17 @@ const removeLastUser = () => {
   }
 };
 console.log(removeLastUser());
+
+
+//removes the first element from the array, it returns the deleted element and the new array.
+const removeFirstUser = () => {
+  try{  
+    user = usersName.at(0);
+    usersName.shift();
+    return sendReponse(201, "User deleted: " + user + "  New array: " + usersName );
+  }catch(error){
+    return sendReponse(500, error);
+  }
+
+};
+console.log(removeFirstUser());
