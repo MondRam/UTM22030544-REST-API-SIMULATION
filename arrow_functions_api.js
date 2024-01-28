@@ -104,3 +104,16 @@ const removeUserByIndex =(index) => {
   }
 };
 console.log(removeUserByIndex(3));
+
+
+//removes the last element from the array, it returns the deleted element and the new array.
+const removeLastUser = () => {
+  try{
+    user = usersName.at(-1);
+    usersName.pop();
+    return sendReponse(201, "User deleted: " + user + "  New array: " + usersName );
+  }catch(error){
+    return sendReponse(500, error);
+  }
+};
+console.log(removeLastUser());
