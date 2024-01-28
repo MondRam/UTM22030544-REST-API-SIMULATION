@@ -57,3 +57,16 @@ const getUser = (userName) => {
 console.log(getUser("Max"));
 
 
+//return all existing users
+const getUsers = (array)  => {
+  try{
+    if (array == "usersName"){
+    return sendReponse(200, "All users: " + usersName);
+    }
+    return sendReponse(400);
+
+  }catch(error){
+    return sendReponse(500, error)
+  }
+};
+console.log(getUsers("usersName"));
