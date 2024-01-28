@@ -66,7 +66,7 @@ const getUsers = (array)  => {
     return sendReponse(400);
 
   }catch(error){
-    return sendReponse(500, error)
+    return sendReponse(500, error);
   }
 };
 console.log(getUsers("usersName"));
@@ -136,7 +136,7 @@ console.log(removeFirstUser());
 //takes the index and the new value, if index exists then replace the element with the new value.
 const updateUserByIndex = (index, newValue) =>{
   try{
-    let length = usersName.length
+    let length = usersName.length;
     if (index >=0 && index < length) {
       usersName[index] = newValue;
       return sendReponse(201, "New array: " + usersName );
@@ -152,7 +152,7 @@ console.log(updateUserByIndex(4, "Jacob"));
 //return the number of users in the array.
 const getUsersSize = () => {
   try{
-    length = usersName.length
+    length = usersName.length;
     return sendReponse(200, "The number of users is " + length);
   }catch(error){
     return sendReponse(500, error);
