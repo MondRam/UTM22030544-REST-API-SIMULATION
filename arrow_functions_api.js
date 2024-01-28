@@ -86,3 +86,21 @@ const addUser = (newUser) => {
 
 };
 console.log(addUser("Corpus "));
+
+
+//takes an index and, if found, removes the element from the array, it returns the deleted element and the new array.
+const removeUserByIndex =(index) => {
+  try{
+    let length = usersName.length
+    if (index >=0 && index < length){
+      const user = usersName.at(index);
+      usersName.splice(index, 1 );
+      return sendReponse(201,"User Deleted: " + user + "  New array: " + usersName );
+    }
+    
+    return sendReponse(404);
+    }catch(error){
+    return sendReponse(500, error);
+  }
+};
+console.log(removeUserByIndex(3));
