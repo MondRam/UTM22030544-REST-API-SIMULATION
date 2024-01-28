@@ -30,6 +30,30 @@ const sendReponse = (code, body = null) =>{
     }
   
     return response;
-  };
+};
+
+
+// takes one username and return it if exists.
+const getUser = (userName) => {
+  try {
+
+    if (!userName) {
+      return sendReponse(400);
+    }
+
+    const userIndex = usersName.indexOf(userName);
+
+    if (userIndex >= 0) {
+      const user = usersName.at(userIndex);
+
+      return sendReponse(200, user);
+    }
+
+    return sendReponse(404);
+  } catch (error) {
+    return sendReponse(500, error);
+  }
+};
+console.log(getUser("Max"));
 
 
