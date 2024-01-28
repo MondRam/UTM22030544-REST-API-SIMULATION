@@ -131,3 +131,19 @@ const removeFirstUser = () => {
 
 };
 console.log(removeFirstUser());
+
+
+//takes the index and the new value, if index exists then replace the element with the new value.
+const updateUserByIndex = (index, newValue) =>{
+  try{
+    let length = usersName.length
+    if (index >=0 && index < length) {
+      usersName[index] = newValue;
+      return sendReponse(201, "New array: " + usersName );
+    }
+  return sendReponse(400);
+  }catch(error){
+    return sendReponse(500, error);
+  }
+};
+console.log(updateUserByIndex(4, "Jacob"));
