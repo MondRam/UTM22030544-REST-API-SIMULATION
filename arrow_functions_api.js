@@ -147,3 +147,15 @@ const updateUserByIndex = (index, newValue) =>{
   }
 };
 console.log(updateUserByIndex(4, "Jacob"));
+
+
+//return the number of users in the array.
+const getUsersSize = () => {
+  try{
+    length = usersName.length
+    return sendReponse(200, "The number of users is " + length);
+  }catch(error){
+    return sendReponse(500, error);
+  }
+};
+console.log(getUsersSize());
