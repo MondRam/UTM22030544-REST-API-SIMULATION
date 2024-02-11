@@ -247,3 +247,28 @@ const getBooks = (arrayName) => {
     }
 };
 console.log(getBooks("books"));
+
+
+//adds a new book to the books array and return the book created, and the new array, including the new book.
+const addBook = (title, ISBN, year, genre, author, stock, publisher) => {
+    const newBook = {
+        "title": title,
+        "ISBN": ISBN,
+        "year": year,
+        "genre": genre,
+        "author": author,
+        "stock": stock,
+        "publisher": publisher,
+    };
+    try {
+        if (title, ISBN, year, genre, author, stock, publisher) {
+            books.push(newBook);
+            return sendReponse(201, "New book: " + newBook.title + "  New array: " + books.map (book => book.title).join(", "));
+        }
+        return sendReponse(400);
+    
+    } catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(addBook("Me Before You", "978456806", 2012, "Love", "Jojo Moyes", 1, "New World"));
