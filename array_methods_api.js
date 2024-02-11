@@ -409,3 +409,40 @@ function genrePartialAvailability(genre) {
 };
 console.log(genrePartialAvailability("Fantasy"));
 
+
+//the first param will be the counting property (genre, author, or publisher),
+// you must return a new object with the name of the property that you are counting and
+// the counter.
+function getCountBy(property){
+    try{
+        if (property){
+            if (property === "Genre"){
+                let counter = books.reduce((acc, book) => {
+                    acc[book.genre] = (acc[book.genre] || 0) + 1;
+                    return acc;
+                }, {});
+                return sendReponse(200, counter);
+            } else if (property === "Author"){
+                let counter = books.reduce((acc, book) => {
+                    acc[book.author] = (acc[book.author] || 0) + 1;
+                    return acc;
+                }, {});
+                return sendReponse(200, counter);
+            } else if (property === "Publisher"){
+                let counter = books.reduce((acc, book) => {
+                    acc[book.publisher] = (acc[book.publisher] || 0) + 1;
+                    return acc;
+                }, {});
+                return sendReponse(200, counter);
+            }
+        }
+        if(!property) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+    }catch (error) {
+        return sendReponse(500, error);
+    }
+
+};
+console.log(getCountBy("Genre"));
