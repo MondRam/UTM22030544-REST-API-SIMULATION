@@ -213,4 +213,19 @@ const sendReponse =(code, body = null) => {
   };
 
 
-
+//takes one book title OR ISBN and return it if exists.
+const getBook = (titleOrISBN) => {
+    let book = books.find((book) => book.title === titleOrISBN || book.ISBN === titleOrISBN);
+    try {
+        if (book) {
+            return sendReponse(200, book);
+        } 
+        if(!titleOrISBN) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+    } catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(getBook("9780062316097"));
