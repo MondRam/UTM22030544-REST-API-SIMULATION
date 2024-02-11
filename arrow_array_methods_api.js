@@ -292,3 +292,34 @@ const removeBookByTitleOrISBN = (titleOrISBN) => {
     }
 };
 console.log(removeBookByTitleOrISBN("1984"));
+
+
+// the first param will be the filtering property (genre, author, or publisher), the second will be the string that is being searched. You must return all books that match the condition.
+const filterBy = (property, search) => {
+    try{
+        if (property && search){
+            if (property === "Genre"){
+                let filter = books.filter(book => book.genre === search);
+                let filterBooks = filter.map (book => book.title).join(", ");
+                return sendReponse(200, "The books that matches " + search + ": " + filterBooks);
+            } else if (property === "Author"){
+                let filter = books.filter(book => book.author === search);
+                let filterBooks = filter.map (book => book.title).join(", ");
+                return sendReponse(200, "The books that matches " + search + ": " + filterBooks);
+            } else if (property === "Publisher"){
+                let filter = books.filter(book => book.publisher === search);
+                let filterBooks = filter.map (book => book.title).join(", ");
+                return sendReponse(200, "The books that matches " + search + ": " + filterBooks);
+            }
+        }
+
+        if(!property || !search) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+
+    }catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(filterBy("Genre", "Fiction"));
