@@ -383,3 +383,26 @@ const genreFullAvailability = (genre) => {
     }
 };
 console.log(genreFullAvailability("Fiction"));
+
+
+//return true or false if at least ONE book from a given genre has stock availability.
+const genrePartialAvailability = (genre) =>{
+    let booksGenre = books.find((book) => book.genre === genre);
+    try{
+        if (booksGenre !== undefined){
+            let filter = books.filter(book => book.genre === genre);
+            let stock = filter.some((book) => book.stock > 0);
+            return sendReponse(200, stock);
+        }
+        if(!genre) {
+            return sendReponse(400);
+        }
+        if (booksGenre == undefined){
+            return sendReponse(404);
+        }
+    
+    }catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(genrePartialAvailability("Fantasy"));
