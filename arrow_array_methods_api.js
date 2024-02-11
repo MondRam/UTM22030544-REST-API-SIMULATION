@@ -229,3 +229,21 @@ const getBook = (titleOrISBN) => {
     }
 };
 console.log(getBook("9780062316097"));
+
+
+//Return all exisisitng books
+const getBooks = (arrayName) => {
+    try {
+        if (arrayName === "books") {
+            return sendReponse(200, "The existing books are: " + books.map (book => book.title).join(", "));
+        }
+        if(!arrayName) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+        
+    } catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(getBooks("books"));
