@@ -342,3 +342,25 @@ function listBooks(arrayName) {
     }
 };
 console.log(listBooks("books"));
+
+
+//return all books for a given year.
+function getBooksByYear(year) {
+    try{
+        if(year){
+            let filter = books.filter(book => book.year === year);
+            let filterBooks = filter.map (book => book.title).join(", ");
+            return sendReponse(200, "The books that matches " + year + ": " + filterBooks);
+        }
+        if(!year) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+    }catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(getBooksByYear(1997));
+
+
+
