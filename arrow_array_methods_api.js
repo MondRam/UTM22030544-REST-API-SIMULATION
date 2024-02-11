@@ -272,3 +272,23 @@ const addBook = (title, ISBN, year, genre, author, stock, publisher) => {
     }
 };
 console.log(addBook("Me Before You", "978456806", 2012, "Love", "Jojo Moyes", 1, "New World"));
+
+
+//takes a title OR ISBN and, if found, removes the element from the array, it returns the deleted element and the new array.
+const removeBookByTitleOrISBN = (titleOrISBN) => {
+    let book = books.find((book) => book.title === titleOrISBN || book.ISBN === titleOrISBN);
+    try {
+        if(book){
+            let bookIndex = books.indexOf(book);
+            books.splice(bookIndex, 1);
+            return sendReponse(200, "Deleted book: " + book.title + ".  New array: " + books.map (book => book.title).join(", "));
+        }
+        if(!titleOrISBN) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+    }catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(removeBookByTitleOrISBN("1984"));
