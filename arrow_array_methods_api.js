@@ -323,3 +323,21 @@ const filterBy = (property, search) => {
     }
 };
 console.log(filterBy("Genre", "Fiction"));
+
+
+//return a list of all the books in the next format: Title - Author - Year.
+const listBooks = (arrayName) => {
+    try {
+        if (arrayName === "books"){
+            return sendReponse(200, books.map (book => book.title + " - " + book.author + " - " + book.year).join(", "));
+        }
+        if(!arrayName) {
+            return sendReponse(400);
+        }
+        return sendReponse(404);
+        
+    }catch (error) {
+        return sendReponse(500, error);
+    }
+};
+console.log(listBooks("books"));
