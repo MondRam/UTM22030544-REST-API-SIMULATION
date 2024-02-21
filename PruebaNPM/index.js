@@ -80,9 +80,9 @@ const getBook = (titleOrISBN) => {
 //Return all exisisitng books
 const getBooks = (arrayName) => {
     try {
-        const books = readFile("books-copy.json");
+        const books = readJson("books-copy.json");
         if (arrayName === "books") {
-            return sendReponse(200, "The existing books are: " + books.map (book => book.title).join(", "));
+            return sendReponse(200, books);
         }
         if(!arrayName) {
             return sendReponse(400);
@@ -128,9 +128,9 @@ const removeBookByTitleOrISBN = (titleOrISBN) => {
     try {
         if(book){
             const bookIndex = books.indexOf(book);
-            const newBooks = books.splice(bookIndex, 1);
-            updateJson("books-copy.json", newBooks);
-            return sendReponse(201, newBooks);
+            const removedBook = books.splice(bookIndex, 1);
+            updateJson("books-copy.json", books);
+            return sendReponse(201, books);
         }
         if(!titleOrISBN) {
             return sendReponse(400);
@@ -194,8 +194,10 @@ const listBooks = (arrayName) => {
 const getBooksByYear = (year) => {
     try{
         const books = readJson("books-copy.json");
+        
         if(year){
-            const filter = books.filter(book => book.year.toString() === year);
+            const intYear = parseInt(year);
+            const filter = books.filter(book => book.year === intYear);
             return sendReponse(200, filter);
         }
         if(!year) {
@@ -301,7 +303,7 @@ function main() {
     case "updateBookTitle":
       const isbn = args[1];
       const newtitle = args[2];
-      console.log(updateBookTitle(isbn, title));
+      console.log(updateBookTitle(isbn, newtitle));
       break;
     case "getBook":
       const titleOrISBN = args[1];
@@ -319,7 +321,7 @@ function main() {
       const addBookauthor = args[5];
       const addBookstock = args[6];
       const addBookpublisher = args[7];
-      console.log(addBook(title, ISBN, year, genre, author, stock, publisher));
+      console.log(addBook(addBooktitle, addBookISBN, addBookyear, addBookgenre, addBookauthor, addBookstock, addBookpublisher));
       break;
     case "removeBookByTitleOrISBN":
         const titleOrISBNr = args[1];
