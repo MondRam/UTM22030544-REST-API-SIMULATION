@@ -43,4 +43,11 @@ class Stack {
         }
     };
 
+    peek(){
+        if(!this.first) return "there is no stack";
+        if (this.first){
+            return this.last;
+        }
+    };
+
 };
