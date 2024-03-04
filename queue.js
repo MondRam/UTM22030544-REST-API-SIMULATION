@@ -42,4 +42,10 @@ class Queue {
         }
     };
 
+    front(){
+        if(!this.first) return "there is no queue";
+        if (this.first){
+            return this.first;
+        }
+    };
 };
